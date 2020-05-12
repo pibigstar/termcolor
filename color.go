@@ -9,49 +9,41 @@ var (
 )
 
 // String colorizes the input with the terminal color that matches
-// the closest the RGB color.
 func String(in string, fr, fg, fb, br, bg, bb uint8) string {
 	return string(Bytes([]byte(in), fr, fg, fb, br, bg, bb))
 }
 
 // FgRGB colorizes the foreground of the input with the terminal color
-// that matches the closest the RGB color.
 func FgRGB(in string, r, g, b uint8) string {
 	return string(FgBytes([]byte(in), r, g, b))
 }
 
 // BgRGB colorizes the background of the input with the terminal color
-// that matches the closest the RGB color.
 func BgRGB(in string, r, g, b uint8) string {
 	return string(BgBytes([]byte(in), r, g, b))
 }
 
 // Bytes colorizes the input with the terminal color that matches
-// the closest the RGB color.
 func Bytes(in []byte, fr, fg, fb, br, bg, bb uint8) []byte {
 	return colorize(rgb(fr, fg, fb, br, bg, bb), in)
 }
 
 // Bytes colorizes the foreground with the terminal color that matches
-// the closest the RGB color.
 func FgBytes(in []byte, r, g, b uint8) []byte {
 	return colorize(color(r, g, b, true), in)
 }
 
 // BgBytes colorizes the background of the input with the terminal color
-// that matches the closest the RGB color.
 func BgBytes(in []byte, r, g, b uint8) []byte {
 	return colorize(color(r, g, b, false), in)
 }
 
 // Byte colorizes the input with the terminal color that matches
-// the closest the RGB color.
 func FgByte(in byte, r, g, b uint8) []byte {
 	return colorize(color(r, g, b, true), []byte{in})
 }
 
 // BgByte colorizes the background of the input with the terminal color
-// that matches the closest the RGB color.
 func BgByte(in byte, r, g, b uint8) []byte {
 	return colorize(color(r, g, b, false), []byte{in})
 }
